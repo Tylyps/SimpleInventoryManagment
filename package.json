@@ -1,0 +1,14 @@
+{
+  "name": "simpleinventorymanagment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start-server": "node index.js"
+  },
+  "author": "Jakub Chmielewski",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
