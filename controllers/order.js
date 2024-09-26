@@ -26,7 +26,6 @@ const postOrders = async (req, res, next) => {
 
       product.stock -= orderProduct.quantity;
     }
-    console.log("AFTER FOR EACH");
 
     //When every item could be ordered remove them from stock
     await ProductDB.bulkSave(products);
