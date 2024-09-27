@@ -6,6 +6,13 @@ class ProductController {
     const productId = req.params.productId;
     try {
       const product = await productQueryHandler.getProduct(productId);
+
+      if (!product) {
+        const error = new Error("Product not found");
+        error.statusCode = 404;
+        throw error;
+      }
+
       return res.json({
         product,
       });

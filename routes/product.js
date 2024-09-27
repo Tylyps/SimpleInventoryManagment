@@ -1,4 +1,3 @@
-// const express = require("express");
 const express = require("express");
 
 const productController = require("../controllers/product");
@@ -20,13 +19,13 @@ router.patch(
 
 router.post(
   "/products/:productId/restock",
-  // stockValidator,
+  stockValidator,
   productController.postProductsRestock
 );
 
 router.post(
   "/products/:productId/sell",
-  // stockValidator,
+  stockValidator,
   productController.postProductsSell
 );
 
