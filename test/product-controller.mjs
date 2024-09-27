@@ -104,7 +104,7 @@ describe("Product controller Tests:", () => {
     const req = { ...defaultReq };
     const res = { ...defaultRes };
     req.body = {
-      name: "Product5",
+      name: "ProductF",
       description: "ProductDescription",
       price: -5.99,
       stock: 5,
@@ -121,6 +121,52 @@ describe("Product controller Tests:", () => {
           "Should fail in DB validation as price is negative"
         ).to.be.equal(
           "Product validation failed: price: Path `price` (-5.99) is less than minimum allowed value (0.01)."
+        );
+        done();
+      });
+  });
+
+  it("Should add more product to stock", (done) => {
+    const req = { ...defaultReq };
+    const res = { ...defaultRes };
+    req.body = {
+      quantity: 99,
+    };
+    req.params = {
+      productId: initialProduct1ID,
+    };
+    ProductController.postProductsRestock(req, res, (e) => {
+      throw e;
+    })
+      .then((data) => {
+        expect(data.product.stock).to.be.equal(109);
+        done();
+      })
+      .catch((e) => {
+        done(e);
+      });
+  });
+
+  it("Should fail on adding more product to stock because of limit", (done) => {
+    const req = { ...defaultReq };
+    const res = { ...defaultRes };
+    req.body = {
+      quantity: 999999999999,
+    };
+    req.params = {
+      productId: initialProduct1ID,
+    };
+    ProductController.postProductsRestock(req, res, (e) => {
+      throw e;
+    })
+      .then((data) => {
+        console.log("THEN DATA", data);
+        done(new Error("Restock product successfully with to big quantity!!!"));
+      })
+      .catch((e) => {
+        expect(e.statusCode).to.be.equal(400);
+        expect(e.message).to.be.equal(
+          "Product will pass a stock limit at 999999!"
         );
         done();
       });

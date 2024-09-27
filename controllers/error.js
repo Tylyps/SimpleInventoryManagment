@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator");
 
-const error404 = (req, res, next) => {
+const errorRoute404 = (req, res, next) => {
   return res.status(404).json({
     message: "Route not found",
   });
@@ -30,7 +30,7 @@ const validationErrorMiddleware = (req, res, next) => {
 };
 
 module.exports = {
-  error404,
+  errorRoute404,
   catchErrorHandler,
   validationErrorMiddleware,
 };

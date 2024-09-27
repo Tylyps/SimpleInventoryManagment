@@ -30,6 +30,11 @@ class ProductCommandHandler {
     const product = await ProductDB.findById(productId);
 
     product.stock += quantity;
+    if (product.stock > 999999) {
+      const error = new Error("Product will pass a stock limit at 999999!");
+      error.statusCode = 400;
+      throw error;
+    }
     return product.save();
   }
 
@@ -55,6 +60,12 @@ class ProductCommandHandler {
   async handleStockForOrder(orderedProducts) {
     const productsId = orderedProducts.map((productData) => productData._id);
     const products = await ProductDB.find({ _id: productsId }); //Get all products that are in order
+
+    if (products.length !== orderedProducts.length) {
+      const error = new Error("Wrong product in order");
+      error.statusCode = 400;
+      throw error;
+    }
 
     //For each product check if there is enought items in stock to make an order, if there is some problems return error
     for (const product of products) {

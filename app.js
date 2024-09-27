@@ -16,7 +16,7 @@ app.use(productRoute);
 app.use(orderRoute);
 
 //Error handlers
-app.use(errorController.error404);
+app.use(errorController.errorRoute404);
 app.use(errorController.catchErrorHandler);
 
 module.exports = app;

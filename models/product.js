@@ -16,12 +16,14 @@ const productSchema = new Schema({
     type: Number,
     required: true,
     min: 0.01,
+    max: 9999999,
   },
   stock: {
     type: Number,
     required: true,
     min: 0,
     default: 1,
+    maxLength: 999999,
   },
 });
 
