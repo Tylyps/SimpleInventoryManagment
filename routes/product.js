@@ -20,13 +20,13 @@ router.patch(
 
 router.post(
   "/products/:productId/restock",
-  stockValidator,
+  // stockValidator,
   productController.postProductsRestock
 );
 
 router.post(
   "/products/:productId/sell",
-  stockValidator,
+  // stockValidator,
   productController.postProductsSell
 );
 
