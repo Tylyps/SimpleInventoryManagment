@@ -78,6 +78,28 @@ class ProductController {
     }
   }
 
+  async deleteProduct(req, res, next) {
+    const productId = req.params.productId;
+
+    try {
+      const deletedProduct = await productCommandHandler.deleteProduct(
+        productId
+      );
+
+      if (!deletedProduct) {
+        const error = new Error("Product not found");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      return res.json({
+        deletedProduct,
+      });
+    } catch (e) {
+      next(e);
+    }
+  }
+
   async postProductsRestock(req, res, next) {
     const productId = req.params.productId;
     const { quantity } = req.body;

@@ -5,6 +5,6 @@ const { orderValidator } = require("../validators/order");
 
 const router = express.Router();
 
-router.post("/orders", orderValidator(), orderController.postOrders);
+router.post("/orders", orderValidator, orderController.postOrders);
 
 module.exports = router;

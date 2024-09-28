@@ -4,6 +4,10 @@ const app = require("./app");
 const ProductDB = require("./models/product");
 
 const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+  console.log("App require URI for mongoDB!");
+  process.exit(1);
+}
 
 const serverPort = process.env.PORT || 3000;
 const initialProductID = "66f29c73da7e74570619b2be";

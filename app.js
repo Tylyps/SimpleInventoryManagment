@@ -9,6 +9,7 @@ const orderRoute = require("./routes/order");
 const errorController = require("./controllers/error");
 
 //Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Routers

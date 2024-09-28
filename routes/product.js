@@ -17,6 +17,8 @@ router.patch(
   productController.patchProduct
 );
 
+router.delete("/products/:productId", productController.deleteProduct);
+
 router.post(
   "/products/:productId/restock",
   stockValidator,

@@ -1,7 +1,7 @@
 const { body } = require("express-validator");
 const { validationErrorMiddleware } = require("../controllers/error");
 
-const orderValidator = () => [
+const orderValidator = [
   //Check if products is an array with only object of correct items in it
   body("products")
     .isArray()

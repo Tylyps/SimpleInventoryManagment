@@ -26,6 +26,12 @@ class ProductCommandHandler {
     return updatedProduct.save();
   }
 
+  async deleteProduct(productId) {
+    const deletedProduct = await ProductDB.findOneAndDelete({ _id: productId });
+
+    return deletedProduct;
+  }
+
   async restockProduct(productId, quantity) {
     const product = await ProductDB.findById(productId);
 
@@ -74,15 +80,22 @@ class ProductCommandHandler {
       );
 
       if (product.stock < orderProduct.quantity) {
-        const error = new Error("Not enought products on stock");
+        const error = new Error("Not enough products on stock");
         error.statusCode = 400;
         throw error;
       }
 
+      if (orderProduct.quantity <= 0) {
+        const error = new Error("Invalid quantity value!");
+        error.statusCode = 400;
+        throw error;
+      }
+
+      //Change stock value by quantity from user order
       product.stock -= orderProduct.quantity;
     }
 
-    //When every item could be ordered remove them from stock
+    //If every item could be ordered save changes for all products stock
     return await ProductDB.bulkSave(products);
   }
 }
