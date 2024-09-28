@@ -3,12 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start-server": "node index.js"
+    "start": "dotenvx run --env-file=.env.dev -- nodemon index.js",
+    "start-server": "dotenvx run --env-file=.env -- node index.js",
+    "test": "dotenvx run --env-file=.env.test -- mocha"
   },
   "author": "Jakub Chmielewski",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.0"
+    "@dotenvx/dotenvx": "^1.14.1",
+    "express": "^4.21.0",
+    "express-validator": "^7.2.0",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.6.3"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3",
+    "nodemon": "^3.1.7"
   }
 }
