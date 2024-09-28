@@ -1,4 +1,4 @@
-<h3 align="center">Simple Inventory Managment</h3>
+<h2 align="center">Simple Inventory Managment</h2>
 
 ## About
 
@@ -35,7 +35,7 @@ npm start
 
 Application should be accessable from "localhost:PORT" (Port that was used in .env files)
 
-## 🔧 Running the tests <a name = "tests"></a>
+## 🔧 Running the tests
 
 To run test make sure you setup `.env.test` correctly and have mongodb server running.
 
@@ -45,12 +45,12 @@ To run test make sure you setup `.env.test` correctly and have mongodb server ru
 npm test
 ```
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## ⛏️ Built Using
 
 - [MongoDB](https://www.mongodb.com/) - Database
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 - [Express](https://expressjs.com/) - Server Framework
 
-## ✍️ Authors <a name = "authors"></a>
+## ✍️ Author
 
 Jakub Chmielewski
